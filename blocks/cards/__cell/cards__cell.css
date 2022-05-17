@@ -1,0 +1,10 @@
+.cards__cell {
+    border-radius: 10px;
+    overflow: hidden;
+    line-height: 0;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    row-gap: 25px;
+    height: 361px;
+}

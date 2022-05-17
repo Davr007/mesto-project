@@ -1,0 +1,8 @@
+.cards__name-like {
+    display: flex;
+    color: black;
+    justify-content: space-between;
+    align-items: center;
+    border: none;
+    margin: 0 20px 0 21px;
+}  
