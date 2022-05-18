@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./page/page.css">
-    <title>Mesto</title>
+    <link rel="stylesheet" href="./pages/pages.css">
+    <title>Место</title>
 </head>
 <body class="page">
     <div class="page__container">
@@ -18,78 +18,70 @@
                 <div class="profile__info">
                     <div class="profile__name-button">
                         <h1 class="profile__name">Жак-Ив Кусто</h1>
-                        <button class="profile__edit-button" type="button"><img class="profile__edit-element" src="./images/edit-button.svg" alt=""></button>
+                        <button class="profile__edit-button" type="button"></button>
                     </div>
                     <p class="profile__job">Исследователь океана</p>
                 </div>
-                <button class="profile__add-button" type="button">
-                    <img src="./images/plus.svg" alt="" class="profile__add-element">
-                </button>
+                <button class="profile__add-button" type="button"></button>
             </section>
             <section class="cards">
-                <article class="cards__cell">
-                    <img src="./images/kirill-pershin-1088404-unsplash.jpg" alt="" class="cards__image">
-                    <div class="cards__name-like">
-                        <h1 class="cards__name">Карачаевск</h1>
-                        <button class="cards__like" type="button"></button>
+                <article class="card">
+                    <img src="./images/kirill-pershin-1088404-unsplash.jpg" alt="" class="card__image">
+                    <div class="card__name-like">
+                        <h2 class="card__name">Карачаевск</h2>
+                        <button class="card__like" type="button"></button>
                     </div>
                 </article>
-                <article class="cards__cell">
-                    <img src="./images/kirill-pershin-1404681-unsplash.jpg" alt="" class="cards__image">
-                    <div class="cards__name-like">
-                        <h1 class="cards__name">Гора Эльбрус</h1>
-                        <button class="cards__like" type="button"></button>
+                <article class="card">
+                    <img src="./images/kirill-pershin-1404681-unsplash.jpg" alt="" class="card__image">
+                    <div class="card__name-like">
+                        <h2 class="card__name">Гора Эльбрус</h2>
+                        <button class="card__like" type="button"></button>
                     </div>
                 </article>
-                <article class="cards__cell">
-                    <img src="./images/kirill-pershin-1556355-unsplash.jpg" alt="" class="cards__image">
-                    <div class="cards__name-like">
-                        <h1 class="cards__name">Домбай</h1>
-                        <button class="cards__like" type="button"></button>
+                <article class="card">
+                    <img src="./images/kirill-pershin-1556355-unsplash.jpg" alt="" class="card__image">
+                    <div class="card__name-like">
+                        <h2 class="card__name">Домбай</h2>
+                        <button class="card__like" type="button"></button>
                     </div>
                 </article>
-                <article class="cards__cell">
-                    <img src="./images/kirill-pershin-1088404-unsplash.jpg" alt="" class="cards__image">
-                    <div class="cards__name-like">
-                        <h1 class="cards__name">Карачаево-Черкессия</h1>
-                        <button class="cards__like" type="button"></button>
+                <article class="card">
+                    <img src="./images/kirill-pershin-1088404-unsplash.jpg" alt="" class="card__image">
+                    <div class="card__name-like">
+                        <h2 class="card__name">Карачаево-Черкессия</h2>
+                        <button class="card__like" type="button"></button>
                     </div>
                 </article>
-                <article class="cards__cell">
-                    <img src="./images/kirill-pershin-1404681-unsplash.jpg" alt="" class="cards__image">
-                    <div class="cards__name-like">
-                        <h1 class="cards__name">Гора Эльбрус</h1>
-                        <button class="cards__like" type="button"></button>
+                <article class="card">
+                    <img src="./images/kirill-pershin-1404681-unsplash.jpg" alt="" class="card__image">
+                    <div class="card__name-like">
+                        <h2 class="card__name">Гора Эльбрус</h2>
+                        <button class="card__like" type="button"></button>
                     </div>
                 </article>
-                <article class="cards__cell">
-                    <img src="./images/kirill-pershin-1556355-unsplash.jpg" alt="" class="cards__image">
-                    <div class="cards__name-like">
-                        <h1 class="cards__name">Домбай</h1>
-                        <button class="cards__like" type="button"></button>
+                <article class="card">
+                    <img src="./images/kirill-pershin-1556355-unsplash.jpg" alt="" class="card__image">
+                    <div class="card__name-like">
+                        <h2 class="card__name">Домбай</h2>
+                        <button class="card__like" type="button"></button>
                     </div>
                 </article>
             </section>
-            <section class="popup">
+            <div class="popup popup_opened">
                 <div class="popup__container">
-                    <div class="popup__close-container">
-                        <button class="popup__close-button" type="button"></button>
-                    </div>
-                    <div class="popup__main-container">
-                        <form class="popup__edit-form" name="edit-form">
-                            <h2 class="popup__title">Редактировать профиль</h2>
-                            <div class="popup__input-container">
-                                <input type="text" class="popup__input-text" name="profile-name" value="Жак-Ив Кусто">
-                                <input type="text" class="popup__input-text" name="profile-job" value="Исследователь океана">
-                            </div>
-                            <input type="submit" class="popup__input-submit" name="submit-profile-changes" value="Сохранить">
-                        </form>
-                    </div>
+                    <button class="popup__close-button" type="button"></button>
+                    <form class="popup__edit-form" name="edit-form">
+                        <h2 class="popup__title">Редактировать профиль</h2>
+                        <input type="text" class="popup__input-text" name="profile-name" value="Жак-Ив Кусто">
+                        <input type="text" class="popup__input-text" name="profile-job" value="Исследователь океана">
+                        <button type="submit" class="popup__button-submit" name="submit-profile-changes">Сохранить</button>
+                    </form>
                 </div>
-            </section>
+            </div>
         </main>
         <footer class="footer">
-            <p class="footer__copyright">&#169; 2022 Mesto Russia</p>
+            <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
         </footer>
     </div>
 </body>

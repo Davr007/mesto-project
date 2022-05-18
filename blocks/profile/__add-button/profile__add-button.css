@@ -10,6 +10,11 @@
     cursor: pointer;
     margin-left: auto;
     padding: 0;
+    border-radius: 2px; /*В фигме даже не заметил, что они есть xD*/
+    background-image: url(../../../images/plus.svg);
+    background-size: 22px 22px;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .profile__add-button:hover {
@@ -18,13 +23,13 @@
 
 @media screen and (max-width: 1060px){
     .profile__add-button {
-        margin: 0;
-        margin-top: 33px;
+        margin: 33px 0 0;
     }
 }
 
 @media screen and (max-width: 580px) {
     .profile__add-button {
         width: 100%;
+        background-size: 16px 16px;
     }
 }

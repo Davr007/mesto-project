@@ -1,4 +1,4 @@
-.cards__like {
+.card__like {
     padding: 0;
     border: none;
     background-color: inherit;
@@ -11,6 +11,6 @@
     background-repeat: no-repeat;
 }
 
-.cards__like:hover {
+.card__like:hover {
     opacity: .5
 }
