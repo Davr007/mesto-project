@@ -25,57 +25,36 @@
                 <button class="profile__add-button" type="button"></button>
             </section>
             <section class="cards">
-                <article class="card">
-                    <img src="./images/kirill-pershin-1088404-unsplash.jpg" alt="фото замка в Карачаево-Черкессии" class="card__image">
-                    <div class="card__name-like">
-                        <h2 class="card__name">Карачаевск</h2>
-                        <button class="card__like" type="button"></button>
-                    </div>
-                </article>
-                <article class="card">
-                    <img src="./images/kirill-pershin-1404681-unsplash.jpg" alt="фото горы Эльбрус издалека" class="card__image">
-                    <div class="card__name-like">
-                        <h2 class="card__name">Гора Эльбрус</h2>
-                        <button class="card__like" type="button"></button>
-                    </div>
-                </article>
-                <article class="card">
-                    <img src="./images/kirill-pershin-1556355-unsplash.jpg" alt="фото гор в Домбае" class="card__image">
-                    <div class="card__name-like">
-                        <h2 class="card__name">Домбай</h2>
-                        <button class="card__like" type="button"></button>
-                    </div>
-                </article>
-                <article class="card">
-                    <img src="./images/kirill-pershin-1088404-unsplash.jpg" alt="фото замка в Карачаево-Черкессии" class="card__image">
-                    <div class="card__name-like">
-                        <h2 class="card__name">Карачаево-Черкессия</h2>
-                        <button class="card__like" type="button"></button>
-                    </div>
-                </article>
-                <article class="card">
-                    <img src="./images/kirill-pershin-1404681-unsplash.jpg" alt="фото горы Эльбрус издалека" class="card__image">
-                    <div class="card__name-like">
-                        <h2 class="card__name">Гора Эльбрус</h2>
-                        <button class="card__like" type="button"></button>
-                    </div>
-                </article>
-                <article class="card">
-                    <img src="./images/kirill-pershin-1556355-unsplash.jpg" alt="фото гор в Домбае" class="card__image">
-                    <div class="card__name-like">
-                        <h2 class="card__name">Домбай</h2>
-                        <button class="card__like" type="button"></button>
-                    </div>
-                </article>
+                <template id="card-template">
+                    <article class="card">
+                        <button class="card__delete" type="button"></button>
+                        <img class="card__image" src="" alt="">
+                        <div class="card__name-like">
+                            <h2 class="card__name"></h2>
+                            <button class="card__like" type="button"></button>
+                        </div>
+                    </article>
+                </template>
             </section>
-            <div class="popup">
+            <div class="popup" id="popup-profile">
                 <div class="popup__container">
-                    <button class="popup__close-button" type="button"></button>
-                    <form class="popup__edit-form" name="edit-form">
+                    <button class="popup__close-button" id="close-profile-popup" type="button"></button>
+                    <form class="popup__form" id="popup-edit-form" name="edit-form">
                         <h2 class="popup__title">Редактировать профиль</h2>
-                        <input type="text" class="popup__input-text" name="profile-name" value="Жак-Ив Кусто">
-                        <input type="text" class="popup__input-text" name="profile-job" value="Исследователь океана">
+                        <input type="text" class="popup__input-text" id="profile-name-input" name="profile-name" value="Жак-Ив Кусто">
+                        <input type="text" class="popup__input-text" id="profile-job-input" name="profile-job" value="Исследователь океана">
                         <button type="submit" class="popup__button-submit" name="submit-profile-changes">Сохранить</button>
+                    </form>
+                </div>
+            </div>
+            <div class="popup" id="popup-cards">
+                <div class="popup__container">
+                    <button class="popup__close-button" id="close-cards-popup" type="button"></button>
+                    <form class="popup__form" id="popup-add-form"  name="cards-form">
+                        <h2 class="popup__title">Новое место</h2>
+                        <input type="text" class="popup__input-text" id="cards-name-input" name="cards-name" placeholder="Название">
+                        <input type="text" class="popup__input-text" id="cards-link-input" name="cards-link" placeholder="Ссылка на картинку">
+                        <button type="submit" class="popup__button-submit" name="submit-cards-add">Создать</button>
                     </form>
                 </div>
             </div>
@@ -84,5 +63,6 @@
             <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
         </footer>
     </div>
+    <script src="./script.js"></script>
 </body>
 </html>

@@ -7,4 +7,5 @@
     flex-direction: column;
     row-gap: 25px;
     min-height: 361px;
+    position: relative;
 }
