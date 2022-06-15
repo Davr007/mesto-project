@@ -24,6 +24,13 @@
                 </div>
                 <button class="profile__add-button" type="button"></button>
             </section>
+            <section class="popup popup_open-card" id="open-card">
+                <div class="popup__open-card-container">
+                    <button class="popup__close-button" id="close-card-popup"></button>
+                    <img src="" alt="" class="popup__open-card-image">
+                    <h2 class="popup__open-card-title"></h2>
+                </div>
+            </section>
             <section class="cards">
                 <template id="card-template">
                     <article class="card">
@@ -36,7 +43,7 @@
                     </article>
                 </template>
             </section>
-            <div class="popup" id="popup-profile">
+            <section class="popup" id="popup-profile">
                 <div class="popup__container">
                     <button class="popup__close-button" id="close-profile-popup" type="button"></button>
                     <form class="popup__form" id="popup-edit-form" name="edit-form">
@@ -46,8 +53,8 @@
                         <button type="submit" class="popup__button-submit" name="submit-profile-changes">Сохранить</button>
                     </form>
                 </div>
-            </div>
-            <div class="popup" id="popup-cards">
+            </section>
+            <section class="popup" id="popup-cards">
                 <div class="popup__container">
                     <button class="popup__close-button" id="close-cards-popup" type="button"></button>
                     <form class="popup__form" id="popup-add-form"  name="cards-form">
@@ -57,12 +64,12 @@
                         <button type="submit" class="popup__button-submit" name="submit-cards-add">Создать</button>
                     </form>
                 </div>
-            </div>
+            </section>
         </main>
         <footer class="footer">
             <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
         </footer>
     </div>
-    <script src="./script.js"></script>
+    <script src="./script/script.js"></script>
 </body>
 </html>

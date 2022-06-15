@@ -12,17 +12,14 @@ const popupProfileName = document.querySelector('#profile-name-input');
 
 const popupProfileJob = document.querySelector('#profile-job-input');
 
-//Данные профиля 
+//Данные профиля
 
 const profileName = document.querySelector('.profile__name');
 
 const profileJob = document.querySelector('.profile__job');
-
-
-// лайк
  
 
-//открытие попапа
+
 function openPopup (item) {
     item.classList.add('popup_opened');
 };
@@ -34,7 +31,6 @@ function openPopupProfile () {
 };
 
 editProfileButton.addEventListener('click', openPopupProfile);
-//закрытие попапа профиля 
 
 function closePopupProfile () {
     closePopup(popupProfile);
@@ -42,22 +38,23 @@ function closePopupProfile () {
 
 closeEditProfile.addEventListener('click', closePopupProfile)
 
-//закрытие попапа
 function closePopup (item) {
     item.classList.remove('popup_opened')
 };
+ 
+function putLike (evt) {
+    const eventTarget = evt.target;
 
+    eventTarget.classList.toggle('card__like_active')
+ }
+ 
 
-//лайк 
-// function putLike (evt) {
-//     const eventTarget = evt.target;
+function deleteCard(evt) {
+    const eventTarget = evt.target;
 
-//     eventTarget.classList.toggle('card__like_active')
-// }
+    eventTarget.closest('.card').remove();
+}
 
-//  likeButton.addEventListener('click', putLike);
-
-//возможность сохранения изменений в редактировании профиля
 const formElement = document.querySelector('#popup-edit-form')
 
 function formSubmitHandler (evt) {
@@ -76,7 +73,6 @@ function formSubmitHandler (evt) {
 
 formElement.addEventListener('submit', formSubmitHandler); 
 
-//открытие формы добавления карточки 
 
 const popupCards = document.querySelector('#popup-cards');
 
@@ -97,8 +93,6 @@ function closePopupCards () {
 
 closeCardsPopup.addEventListener ('click', closePopupCards);
 
-
-// темплейт 
 
 const cardTemplate = document.querySelector('#card-template').content;
 
@@ -139,15 +133,66 @@ function createCard (data) {
     cardElement.querySelector('.card__image').src = data.link;
     cardElement.querySelector('.card__name').textContent = data.name;
 
+    cardElement.querySelector('.card__like').addEventListener('click', putLike);
+
+    cardElement.querySelector('.card__delete').addEventListener('click', deleteCard)
+
+    cardElement.querySelector('.card__image').addEventListener('click', () => handleClickCard(data.name, data.link))
+
     return cardElement
 }
 
-initialCards.forEach(function(item) {
-    const card = createCard(item);
+function renderCard (data, container) {
+    const card = createCard(data);
 
-    cardsPlace.prepend(card);
+    container.prepend(card);
+}
+
+initialCards.forEach(function(item) {
+    renderCard(item, cardsPlace)
 })
 
+const inputCardName = document.querySelector('#cards-name-input');
 
+const inputCardImage = document.querySelector('#cards-link-input')
 
+const addFormSubmit = document.querySelector('#popup-add-form')
+
+function addCard(evt) {
+    evt.preventDefault();
+
+    const userCard = {};
+
+    userCard.name = inputCardName.value;
+
+    userCard.link = inputCardImage.value;
+
+    closePopupCards();
+
+    renderCard(userCard, cardsPlace);
+}
+
+addFormSubmit.addEventListener('submit', addCard); 
+
+const openCardImage = document.querySelector('.popup__open-card-image');
+
+const openCardName = document.querySelector('.popup__open-card-title');
+
+const popupCard = document.querySelector('#open-card')
+
+const closeOpenCardButton = document.querySelector('#close-card-popup')
+
+function handleClickCard (name, image) {
+    openCardImage.src = image;
+
+    openCardName.textContent = name;
+
+    openPopup(popupCard);
+}
+
+function closePopupCard() {
+    closePopup(popupCard);
+}
+
+closeOpenCardButton.addEventListener('click', closePopupCard)
 
