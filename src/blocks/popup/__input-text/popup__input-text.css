@@ -8,17 +8,5 @@
     border: none;
     border-bottom: solid 1px rgba(0, 0, 0, .2);
     box-sizing: border-box;
-    margin-bottom: 30px;
     outline: none;
-}
-
-.popup__input-text:last-of-type {
-    margin-bottom: 48px;
-}
-
-@media screen and (max-width: 580px){
-
-    .popup__input-text:last-of-type {
-        margin-bottom: 45px;
-    }
 }
