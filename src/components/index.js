@@ -1,3 +1,7 @@
+import '../pages/index.css';
+
+import {validationObject} from './validate.js';
+
 const cardsAddButton = document.querySelector('.profile__add-button');
 
 export const formItem = document.querySelector('#popup-edit-form');
@@ -29,6 +33,10 @@ import {closePopupCard} from './modal.js';
 import {formSubmitHandler} from './card.js';
 
 import {addCard} from './card.js';
+
+import {enableValidation} from './validate.js';
+
+enableValidation(validationObject)
 
 window.addEventListener('mousedown', closeByOverlay);
 //обработчики открывания и закрывания попапов

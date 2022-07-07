@@ -28,8 +28,9 @@ export function openPopup (item) {
         inputElement.classList.remove('popup__input-text_type_error');
         formElement.querySelector(`#${inputElement.id}-error`).classList.remove('popup__input-error_active');
     });
-    formItem.querySelector('.popup__button-submit').classList.add('popup__button-submit_inactive');
+    formElement.querySelector('.popup__button-submit').classList.add('popup__button-submit_inactive')
 };
+
 function closePopup (item) {
     item.classList.remove('popup_opened')
 };

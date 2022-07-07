@@ -1,4 +1,4 @@
-const validationObject = {
+export const validationObject = {
     formSelector: 'popup__form',
     inputSelector: 'popup__input-text',
     submitButtonSelector: 'popup__button-submit',
@@ -55,14 +55,15 @@ const setEventListeners = (formElement, validObj) => {
    })
 };
 
-const enableValidation = (validObj) => {
+export const enableValidation = (validObj) => {
     const formList = Array.from(document.querySelectorAll(`.${validObj.formSelector}`));
     formList.forEach((formElement) => {
-        formElement.addEventListener('submit', (evt) => {
-            evt.preventDefault();
+        formElement.addEventListener('submit', () => {
+            (evt) => {
+                evt.preventDefault();
+            };
         });
         setEventListeners(formElement, validObj)
     })
 };
 
-enableValidation(validationObject);
