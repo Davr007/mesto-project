@@ -22,6 +22,8 @@ import {popupCard} from './card.js';
 
 export function openPopup (item) {
     item.classList.add('popup_opened');
+    window.addEventListener('mousedown', closeByOverlay);
+    document.addEventListener('keydown', keyHandler);
 };
 
 export function doFormBasic (item) {
@@ -35,7 +37,9 @@ export function doFormBasic (item) {
 }
 
 function closePopup (item) {
-    item.classList.remove('popup_opened')
+    item.classList.remove('popup_opened');
+    window.removeEventListener('mousedown', closeByOverlay);
+    document.removeEventListener('keydown', keyHandler);
 };
 
 export function openPopupProfile () {

@@ -17,15 +17,9 @@ const popupCloseCards = document.querySelector('#close-cards-popup');
 
 const cardFormSubmit = document.querySelector('#popup-add-form');
 
-import {closeByOverlay, doSubmitInactive} from './modal.js';
-
-import {doFormBasic} from './modal.js';
-
 import {openPopupProfile} from './modal.js';
 
 import {closePopupProfile} from './modal.js';
-
-import {keyHandler} from './modal.js';
 
 import {openPopupCards} from './modal.js';
 
@@ -43,11 +37,9 @@ import {enableValidation} from './validate.js';
 
 enableValidation(validationObject)
 
-window.addEventListener('mousedown', closeByOverlay);
 //обработчики открывания и закрывания попапов
 profileEditButton.addEventListener('click', openPopupProfile);
 profileCloseEdit.addEventListener('click', closePopupProfile);
-document.addEventListener('keydown', keyHandler);
 cardsAddButton.addEventListener ('click', openPopupCards);
 popupCloseCards.addEventListener ('click', closePopupCards);
 cardsFormCloseButton.addEventListener('click', closePopupCard);
