@@ -1,7 +1,7 @@
 
-const popupProfile = document.querySelector('#popup-profile'); 
+export const popupProfile = document.querySelector('#popup-profile'); 
 
-const popupCards = document.querySelector('#popup-cards');
+export const popupCards = document.querySelector('#popup-cards');
 
 const cardsInputName = document.querySelector('#cards-name-input');
 
@@ -22,14 +22,17 @@ import {popupCard} from './card.js';
 
 export function openPopup (item) {
     item.classList.add('popup_opened');
-    const inputList = Array.from(item.querySelectorAll('.popup__input-text'));
+};
+
+export function doFormBasic (item) {
     const formElement = item.querySelector('.popup__form');
+    formElement.querySelector('.popup__button-submit').classList.add('popup__button-submit_inactive');
+    const inputList = Array.from(item.querySelectorAll('.popup__input-text'));
     inputList.forEach((inputElement) => {
         inputElement.classList.remove('popup__input-text_type_error');
         formElement.querySelector(`#${inputElement.id}-error`).classList.remove('popup__input-error_active');
     });
-    formElement.querySelector('.popup__button-submit').classList.add('popup__button-submit_inactive')
-};
+}
 
 function closePopup (item) {
     item.classList.remove('popup_opened')
@@ -39,6 +42,7 @@ export function openPopupProfile () {
     openPopup(popupProfile);
     popupProfileName.value = profileName.textContent;
     popupProfileJob.value = profileJob.textContent;
+    doFormBasic(popupProfile);
 };
 
 export function closePopupProfile () {
@@ -49,6 +53,7 @@ export function openPopupCards () {
     cardsInputName.value = '';
     cardsInputLink.value = '';
     openPopup(popupCards);
+    doFormBasic(popupCards);
 };
 
 
@@ -62,15 +67,14 @@ export function closePopupCard() {
 
 
 export function keyHandler (evt){
-    const popupActive = document.querySelector('.popup_opened');
     if (evt.key === 'Escape') {
+        const popupActive = document.querySelector('.popup_opened');
         closePopup(popupActive);
     }
 }
 
 export function closeByOverlay (evt) {
-    const popupActive = document.querySelector('.popup_opened');
     if (evt.target.classList.contains('popup_opened')){
-        closePopup(popupActive);
+        closePopup(evt.target);
     }
 }

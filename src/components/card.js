@@ -110,7 +110,7 @@ function deleteCard(evt) {
     eventTarget.closest('.card').remove();
 };
 
-export function formSubmitHandler (evt) {
+export function handleProfileFormSubmit (evt) {
     evt.preventDefault();
 
     const nameProfileValue = popupProfileName.value;

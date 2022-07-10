@@ -1,5 +1,6 @@
 import '../pages/index.css';
 
+
 import {validationObject} from './validate.js';
 
 const cardsAddButton = document.querySelector('.profile__add-button');
@@ -16,7 +17,9 @@ const popupCloseCards = document.querySelector('#close-cards-popup');
 
 const cardFormSubmit = document.querySelector('#popup-add-form');
 
-import {closeByOverlay} from './modal.js';
+import {closeByOverlay, doSubmitInactive} from './modal.js';
+
+import {doFormBasic} from './modal.js';
 
 import {openPopupProfile} from './modal.js';
 
@@ -30,9 +33,11 @@ import {closePopupCards} from './modal.js';
 
 import {closePopupCard} from './modal.js';
 
-import {formSubmitHandler} from './card.js';
+import {handleProfileFormSubmit} from './card.js';
 
 import {addCard} from './card.js';
+
+import {popupProfile, popupCards} from './modal.js';
 
 import {enableValidation} from './validate.js';
 
@@ -49,6 +54,6 @@ cardsFormCloseButton.addEventListener('click', closePopupCard);
 
 //обработчик карточек 
 
-formItem.addEventListener('submit', formSubmitHandler); 
+formItem.addEventListener('submit', handleProfileFormSubmit); 
 cardsAddButton.addEventListener ('click', openPopupCards);
 cardFormSubmit.addEventListener('submit', addCard); 
