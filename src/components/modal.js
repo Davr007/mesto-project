@@ -7,6 +7,12 @@ const cardsInputName = document.querySelector('#cards-name-input');
 
 const cardsInputLink = document.querySelector('#cards-link-input');
 
+const inputAvatar = document.querySelector('#avatar-link-input');
+
+export const avatarImage = document.querySelector('.profile__avatar');
+
+import {popupAvatar} from './card.js'
+
 import {popupProfileName} from './card.js';
 
 import {profileName} from './card.js';
@@ -15,10 +21,11 @@ import {popupProfileJob} from './card.js';
 
 import {profileJob} from './card.js';
 
-import {formItem} from './index.js';
-
 import {popupCard} from './card.js';
 
+import {editProfile} from './api.js';
+
+import {getUserAvatar} from './api.js';
 
 export function openPopup (item) {
     item.classList.add('popup_opened');
@@ -44,14 +51,37 @@ function closePopup (item) {
 
 export function openPopupProfile () {
     openPopup(popupProfile);
-    popupProfileName.value = profileName.textContent;
-    popupProfileJob.value = profileJob.textContent;
+    profileName.textContent = popupProfileName.value;
+    profileJob.textContent = popupProfileJob.value;
     doFormBasic(popupProfile);
+};
+
+
+export function saveEditProfile () {
+
+    loadChanges(popupProfile, 'Сохранение...');
+
+    editProfile({name: popupProfileName.value, about: popupProfileJob.value})
+
+    .then ((data) => {
+        profileName.textContent = data.name;
+        profileJob.textContent = data.about;
+        console.log('Данные о пользователи изменены успешно')
+    })
+
+    .catch ((err) => {
+        console.log(`При изменении данных о пользователи произошла ошибка: ${err}`)
+    })
+
+    .finally(() => {
+        setTimeout(() => loadChanges(popupProfile, 'Сохранение...'), 1000)
+    } )
 };
 
 export function closePopupProfile () {
     closePopup(popupProfile);
 };
+
 
 export function openPopupCards () {
     cardsInputName.value = '';
@@ -60,6 +90,15 @@ export function openPopupCards () {
     doFormBasic(popupCards);
 };
 
+export function openPopupAvatar () {
+    inputAvatar.value = '';
+    openPopup(popupAvatar);
+    doFormBasic(popupAvatar);
+};
+
+export function closePopupAvatar () {
+    closePopup (popupAvatar)
+};
 
 export function closePopupCards () {
     closePopup(popupCards)
@@ -75,10 +114,33 @@ export function keyHandler (evt){
         const popupActive = document.querySelector('.popup_opened');
         closePopup(popupActive);
     }
-}
+};
 
 export function closeByOverlay (evt) {
     if (evt.target.classList.contains('popup_opened')){
         closePopup(evt.target);
     }
-}
+};
+
+
+export function saveUserAvatar () {
+
+    loadChanges(popupAvatar, 'Сохранение...');
+
+    getUserAvatar({avatar: inputAvatar.value})
+
+    .then ((data) => {
+        avatarImage.src = data.avatar;
+        console.log('Аватар изменен успешно')
+    })
+
+    .catch ((err) => {
+        console.log(`Ошибка: ${err}`)
+    })
+
+    .finally(() => setTimeout(() => {loadChanges(popupAvatar, 'Сохраненить')}, 1000))
+};
+
+export const loadChanges = (popup, string) => {
+    popup.querySelector('.popup__button-submit').textContent = string;
+};
