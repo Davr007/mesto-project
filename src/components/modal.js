@@ -41,6 +41,8 @@ export function doFormBasic (item) {
         inputElement.classList.remove('popup__input-text_type_error');
         formElement.querySelector(`#${inputElement.id}-error`).classList.remove('popup__input-error_active');
     });
+    formElement.querySelector('.popup__button-submit').disabled = true;
+    
 }
 
 function closePopup (item) {
@@ -51,13 +53,15 @@ function closePopup (item) {
 
 export function openPopupProfile () {
     openPopup(popupProfile);
-    profileName.textContent = popupProfileName.value;
-    profileJob.textContent = popupProfileJob.value;
+    popupProfileName.value = profileName.textContent;
+    popupProfileJob.value = profileJob.textContent;
     doFormBasic(popupProfile);
 };
 
 
-export function saveEditProfile () {
+export function saveEditProfile (evt) {
+
+    evt.preventDefault();
 
     loadChanges(popupProfile, 'Сохранение...');
 
@@ -66,6 +70,7 @@ export function saveEditProfile () {
     .then ((data) => {
         profileName.textContent = data.name;
         profileJob.textContent = data.about;
+        closePopupProfile ();
         console.log('Данные о пользователи изменены успешно')
     })
 
@@ -73,9 +78,7 @@ export function saveEditProfile () {
         console.log(`При изменении данных о пользователи произошла ошибка: ${err}`)
     })
 
-    .finally(() => {
-        setTimeout(() => loadChanges(popupProfile, 'Сохранение...'), 1000)
-    } )
+    .finally(() =>  loadChanges(popupProfile, 'Сохранить'))
 };
 
 export function closePopupProfile () {
@@ -123,7 +126,9 @@ export function closeByOverlay (evt) {
 };
 
 
-export function saveUserAvatar () {
+export function saveUserAvatar (evt) {
+
+    evt.preventDefault();
 
     loadChanges(popupAvatar, 'Сохранение...');
 
@@ -131,6 +136,7 @@ export function saveUserAvatar () {
 
     .then ((data) => {
         avatarImage.src = data.avatar;
+        closePopupAvatar();
         console.log('Аватар изменен успешно')
     })
 
@@ -138,7 +144,7 @@ export function saveUserAvatar () {
         console.log(`Ошибка: ${err}`)
     })
 
-    .finally(() => setTimeout(() => {loadChanges(popupAvatar, 'Сохраненить')}, 1000))
+    .finally(() => loadChanges(popupAvatar, 'Сохранить'))
 };
 
 export const loadChanges = (popup, string) => {

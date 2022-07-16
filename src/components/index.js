@@ -22,7 +22,7 @@ const cardFormSubmit = document.querySelector('#popup-add-form');
 const popupAvatarOpenButton = document.querySelector('.profile__avatar-button');
 
 
-import {openPopupAvatar, openPopupProfile} from './modal.js';
+import {openPopupAvatar, openPopupProfile, saveUserAvatar} from './modal.js';
 
 import {closePopupProfile} from './modal.js';
 
@@ -32,11 +32,9 @@ import {closePopupCards} from './modal.js';
 
 import {closePopupCard} from './modal.js';
 
-import {handleProfileFormSubmit} from './card.js';
-
 import {enableValidation} from './validate.js';
 
-import {changeLikeStatus, getAllCards} from './api.js';
+import {changeLikeStatus, deletingCard, getAllCards} from './api.js';
 
 import {cardsPlace} from './card.js';
 
@@ -47,8 +45,6 @@ import {profileName} from './card.js';
 import {profileJob} from './card.js';
 
 import {closePopupAvatar} from './modal.js';
-
-import {handleAvatarFormSubmit} from './card.js';
 
 import {avatarImage} from './modal.js';
 
@@ -64,19 +60,20 @@ import {cardTemplate} from './card.js';
 
 import {handleClickCard} from './card.js';
 
-import {deletingCard} from './api.js';
-
 import {deleteCard} from './card.js';
 
 const avatarForm = document.querySelector('#popup-avatar-form');
 
 import {loadChanges} from './modal.js';
 
-import { popupCard } from './card.js';
+
+import { saveEditProfile } from './modal.js';
 
 export let userId = null;
 
-export function saveCard () {
+export function saveCard (evt) {
+
+  evt.preventDefault()
 
   loadChanges(cardFormSubmit, 'Сохранение...')
 
@@ -84,6 +81,7 @@ export function saveCard () {
 
   .then ((data) => {
     renderCard(data, cardsPlace, userId, handleChangeLikeStatus);
+    closePopupCards()
     console.log('Карточка добавлена успешно');
   })
 
@@ -91,20 +89,9 @@ export function saveCard () {
     console.log(`Ошибка: ${err}`)
   })
 
-  .finally(() => {setTimeout(() => loadChanges(cardFormSubmit, 'Создать'), 2000)})
+  .finally(() =>  loadChanges(cardFormSubmit, 'Создать'))
 }
 
-
-
-function addCard(evt) {
-
- evt.preventDefault();
-
- saveCard ();
-
- setTimeout(() => {closePopupCards()}, 1000);
-
-};
 
 const checkLike = (likesArray, userId, likeElement) => {
   likesArray.forEach((cardLike) => {
@@ -147,7 +134,7 @@ export const handleChangeLikeStatus = (cardId, isLiked, cardElement) => {
   })
 };
 
-export function createCard (data, userId, handleChangeLikeStatus) {
+export function createCard (data, userId, handleChangeLikeStatus, deletingCard) {
   const cardElement = cardTemplate.cloneNode(true).querySelector('.card');
   const likeButton = cardElement.querySelector('.card__like');
   const cardImage = cardElement.querySelector('.card__image');
@@ -202,17 +189,17 @@ popupAvatarCloseButton.addEventListener('click', closePopupAvatar)
 
 //обработчик карточек 
 
-formItem.addEventListener('submit', handleProfileFormSubmit); 
+formItem.addEventListener('submit', (evt) => saveEditProfile(evt)); 
 cardsAddButton.addEventListener ('click', openPopupCards);
-cardFormSubmit.addEventListener('submit', addCard);
-avatarForm.addEventListener('submit', handleAvatarFormSubmit);
+cardFormSubmit.addEventListener('submit', (evt) => saveCard(evt));
+avatarForm.addEventListener('submit', (evt) => saveUserAvatar(evt));
 
 // загрузка карточек из сервера 
 
 getAllCards()
 
 .then ((data) => {
-  renderCard(data, cardsPlace, userId, handleChangeLikeStatus)
+  renderCard(data, cardsPlace, userId, handleChangeLikeStatus, deletingCard)
   })
 
 .catch ((err) => {
@@ -229,7 +216,7 @@ getAllInfo()
     userId = user._id
 
     cards.reverse().forEach((data) => {
-        renderCard(data, cardsPlace, userId, handleChangeLikeStatus)
+        renderCard(data, cardsPlace, userId, handleChangeLikeStatus, deletingCard)
     })
 })
 
