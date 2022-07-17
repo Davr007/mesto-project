@@ -134,7 +134,7 @@ export const handleChangeLikeStatus = (cardId, isLiked, cardElement) => {
   })
 };
 
-export function createCard (data, userId, handleChangeLikeStatus, deletingCard) {
+export function createCard (data, userId, handleChangeLikeStatus) {
   const cardElement = cardTemplate.cloneNode(true).querySelector('.card');
   const likeButton = cardElement.querySelector('.card__like');
   const cardImage = cardElement.querySelector('.card__image');
@@ -164,8 +164,8 @@ export function createCard (data, userId, handleChangeLikeStatus, deletingCard) 
   cardDeleteButton.addEventListener('click', (evt) => {
     
     if (userId == data.owner._id) {
+      deleteCard(evt);
       deletingCard(cardId);
-      deleteCard(evt)
     } else {
       console.log('это не ваша карточка')
     }
@@ -199,7 +199,7 @@ avatarForm.addEventListener('submit', (evt) => saveUserAvatar(evt));
 getAllCards()
 
 .then ((data) => {
-  renderCard(data, cardsPlace, userId, handleChangeLikeStatus, deletingCard)
+  renderCard(data, cardsPlace, userId, handleChangeLikeStatus)
   })
 
 .catch ((err) => {
@@ -216,7 +216,7 @@ getAllInfo()
     userId = user._id
 
     cards.reverse().forEach((data) => {
-        renderCard(data, cardsPlace, userId, handleChangeLikeStatus, deletingCard)
+        renderCard(data, cardsPlace, userId, handleChangeLikeStatus)
     })
 })
 

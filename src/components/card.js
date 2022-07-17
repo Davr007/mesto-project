@@ -28,8 +28,8 @@ export const cardsPlace = document.querySelector('.cards');
 
 
 
-export function renderCard (data, container, userId, handleChangeLikeStatus, deletingCard) {
-  const card = createCard(data, userId, handleChangeLikeStatus, deletingCard);
+export function renderCard (data, container, userId, handleChangeLikeStatus) {
+  const card = createCard(data, userId, handleChangeLikeStatus);
   container.prepend(card);
 };
 
